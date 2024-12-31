@@ -1,0 +1,12 @@
+{
+  "name": "cicd_project",
+  "version": "1.0.0",
+  "description": "creating a good cicd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "QtheDOC",
+  "license": "MIT",
+  "keywords": []
+}

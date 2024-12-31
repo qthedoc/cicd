@@ -1,0 +1,87 @@
+name: Release Workflow
+
+on:
+  push:
+    branches:
+      - main  # Run on pushes to the main branch
+  workflow_dispatch: # Allows manual triggering from the GitHub Actions UI
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Step 2: Set up Node.js (for changelog and versioning tools)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install dependencies (if needed)
+      - name: Install dependencies
+        run: |
+          npm install -g conventional-recommended-bump 
+          npm install -g conventional-changelog-angular
+          npm install -g conventional-changelog-cli
+          sudo apt-get install jq -y
+
+      # Step 4: Configure Git Identity
+      - name: Configure Git Identity
+        run: |
+          git config --global user.email "bot@bottymcbotface.com"
+          git config --global user.name "Release Bot"
+
+      # Step 5: Bump the version
+      - name: Bump version
+        id: bump_version
+        run: |
+          echo "Reading current version from VERSION file..."
+          current_version=$(cat VERSION)
+          echo "Current Version: $current_version"
+          
+          recommended_bump=$(npx conventional-recommended-bump -p angular -r $current_version)
+          echo "Recommended Bump: $recommended_bump"
+          
+          next_version=$(npx semver $current_version -i $recommended_bump)
+          echo "Next Version: $next_version"
+          
+          echo "Saving next version to VERSION file..."
+          echo $next_version > VERSION
+          
+          echo "version=$next_version" >> $GITHUB_ENV
+
+      # Step 7: Update the changelog
+      - name: Update changelog
+        run: |
+          npx conventional-changelog-cli -p angular -i CHANGELOG.md -s --release-as ${{ env.version }} --tag-prefix v
+
+      # Step 8: Update Version around the repo
+      # Step 8.1: Update the version in frontend/package.json
+      - name: Update frontend/package.json version
+        run: |
+          jq ".version = \"${{ env.version }}\"" frontend/package.json > frontend/package.tmp.json
+          mv frontend/package.tmp.json frontend/package.json
+          rm -f frontend/package.tmp.json
+
+      # Step 9: Commit all changes
+      - name: Commit changes
+        run: |
+          git add CHANGELOG.md VERSION frontend/package.json frontend/public/VERSION frontend/public/CHANGELOG.md
+          git commit -m "chore(release): ${{ env.version }}"
+
+      # Step 10: Tag the commit
+      - name: Create Git tag
+        run: |
+          git tag -a "v${{ env.version }}" -m "Release v${{ env.version }}"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} "v${{ env.version }}"
+
+      # Step 12: Push changes to the repo
+      - name: Push changes
+        run: |
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} ${{ env.branch_name }}
