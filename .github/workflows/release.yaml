@@ -3,7 +3,7 @@ name: Release Workflow
 on:
   # push:
   #   branches:
-  #     - main  # Run on pushes to the main branch
+  #     - main  # Run on pushes to the main branch 
   workflow_dispatch: # Allows manual triggering from the GitHub Actions UI
 
 jobs:
