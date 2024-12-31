@@ -1,0 +1,34 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+  # Allows you to manually trigger this from the GitHub Actions tab:
+  workflow_dispatch:
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # fetch all tags so release-please can compare tags properly
+
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v4
+        with:
+          # The release-type determines how versioning is computed.
+          # For Node.js, use "node". For Python, "python". See the release-please docs for other types.
+          release-type: "node"
+
+          # (Optional) If your tags or version in package.json have a "v" prefix, set this to "true".
+          # Default is false.
+          # include-v-in-tag: "true"
+
+          # The primary branch you want to release from (usually "main" or "master").
+          primary-branch: "main"
+
+          # Provide the GitHub token so release-please can open PRs, create tags, etc.
+          token: "${{ secrets.GITHUB_TOKEN }}"
