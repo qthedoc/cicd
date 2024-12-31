@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/qthedoc/cicd/compare/v1.1.0...v1.2.0) (2024-12-31)
+
+
+### Features
+
+* new line ([1a43f0f](https://github.com/qthedoc/cicd/commit/1a43f0fb3f51afca1e1a3e9f378c151af5ae83e0))
+
 ## [1.1.0](https://github.com/qthedoc/cicd/compare/v1.0.1...v1.1.0) (2024-12-31)
 
 
