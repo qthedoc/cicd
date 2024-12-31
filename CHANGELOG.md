@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/qthedoc/cicd/compare/v1.0.1...v1.1.0) (2024-12-31)
+
+
+### Features
+
+* only run manually ([7510564](https://github.com/qthedoc/cicd/commit/75105649dfe95e178ef8a48d6be28309aed03e66))
+
 ## [1.0.1](https://github.com/qthedoc/cicd/compare/v1.0.0...v1.0.1) (2024-12-31)
 
 
