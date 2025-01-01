@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/qthedoc/cicd/compare/v1.2.0...v1.2.1) (2025-01-01)
+
+
+### Bug Fixes
+
+* reorder yaml ([a8b0fb1](https://github.com/qthedoc/cicd/commit/a8b0fb13d000e82034fe4a163ff72ab2a70b600f))
+
 ## [1.2.0](https://github.com/qthedoc/cicd/compare/v1.1.0...v1.2.0) (2024-12-31)
 
 
