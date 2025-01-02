@@ -8,14 +8,15 @@ on:
   # Allows you to manually trigger this from the GitHub Actions tab:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  # If you also need to update PRs or attach labels, etc.
+  pull-requests: write
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      # If you also need to update PRs or attach labels, etc.
-      pull-requests: write
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -27,7 +28,7 @@ jobs:
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           release-type: "node"
-          primary-branch: "main"
+          # primary-branch: "main"
 
 
 
