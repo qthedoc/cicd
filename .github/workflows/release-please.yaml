@@ -15,7 +15,7 @@ jobs:
       contents: write
       # If you also need to update PRs or attach labels, etc.
       pull-requests: write
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
         uses: google-github-actions/release-please-action@v4
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
-          primary-branch: "main"
+          target-branch: "main"
           release-type: "node"
 
 
