@@ -26,7 +26,7 @@ jobs:
       - name: Release Please
         uses: google-github-actions/release-please-action@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.CICD_TEST }}"
           release-type: "node"
           # primary-branch: "main"
 
