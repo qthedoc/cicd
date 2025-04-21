@@ -9,13 +9,13 @@ module.exports = {
         changelogFile: 'CHANGELOG.md',
       },
     ],
-    // [
-    //   '@semantic-release/npm',
-    //   {
-    //     npmPublish: false,
-    //     pkgRoot: 'packages/frontend',
-    //   },
-    // ],
+    [
+      '@semantic-release/npm',
+      {
+        npmPublish: false,
+        // pkgRoot: 'packages/frontend',
+      },
+    ],
     [
       '@semantic-release/git',
       {
