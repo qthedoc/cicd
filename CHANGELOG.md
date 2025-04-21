@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/qthedoc/cicd/compare/v1.4.0...v1.4.1) (2025-04-21)
+
+
+### Bug Fixes
+
+* grout! ([e9bbf83](https://github.com/qthedoc/cicd/commit/e9bbf8342698c330ac9366a0b7527b4207de8f7d))
+
 # [1.4.0](https://github.com/qthedoc/cicd/compare/v1.3.0...v1.4.0) (2025-04-21)
 
 
