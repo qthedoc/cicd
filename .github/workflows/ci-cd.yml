@@ -1,0 +1,70 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Needed for semantic-release
+
+      # Set up Node.js
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x' # Matches Vite requirements
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Run tests (optional)
+    #   - name: Run Tests
+    #     run: npm run test
+    #     if: ${{ !env.SKIP_TESTS }}
+
+      # Build frontend
+      - name: Build Frontend
+        run: npm run build:frontend
+
+      # Deploy preview (on PR)
+    #   - name: Deploy Preview to Netlify
+    #     if: github.event_name == 'pull_request'
+    #     uses: South-Paw/action-netlify-deploy@v1.2.0
+    #     with:
+    #       github-token: ${{ secrets.GITHUB_TOKEN }}
+    #       netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    #       netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+    #       build-dir: './packages/frontend/dist'
+    #       draft: true
+    #       comment-on-pull-request: true
+
+      # Semantic Release (on main push)
+      - name: Semantic Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
+
+      # Deploy production (on main push)
+    #   - name: Deploy Production to Netlify
+    #     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    #     uses: South-Paw/action-netlify-deploy@v1.2.0
+    #     with:
+    #       github-token: ${{ secrets.GITHUB_TOKEN }}
+    #       netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    #       netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+    #       build-dir: './packages/frontend/dist'
+    #     #   prod: true
+    #       comment-on-commit: true
