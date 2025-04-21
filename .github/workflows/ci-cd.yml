@@ -36,7 +36,7 @@ jobs:
 
       # Build frontend
       - name: Build Frontend
-        run: npm run build:frontend
+        run: npm run build
 
       # Deploy preview (on PR)
     #   - name: Deploy Preview to Netlify
