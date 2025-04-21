@@ -8,6 +8,11 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write # For pushing tags, package.json, CHANGELOG.md
+  issues: write # For creating issues on failure
+  pull-requests: write # For commenting on PRs (Netlify deploy previews)
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
