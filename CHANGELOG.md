@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/qthedoc/cicd/compare/v1.3.0...v1.4.0) (2025-04-21)
+
+
+### Features
+
+* hott ([f587e2c](https://github.com/qthedoc/cicd/commit/f587e2ceaac39f6cb2086c989fcc5e3135e5430d))
+
 # [1.3.0](https://github.com/qthedoc/cicd/compare/v1.2.0...v1.3.0) (2025-04-21)
 
 
