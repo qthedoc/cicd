@@ -33,6 +33,6 @@ stop preview and production builds by netlify:
 - Go to Site configuration > Build & deploy > Continuous deployment > Branches and deploy contexts. Set Deploy Previews to Disabled.
 - Stop all builds: Go to Build settings > Stop builds.
 
-set build-dir in the workflows to the full path, i.e. root/project/build (relative didn't work for me)
+set build-dir in the workflows to the full path, i.e. root/project/build (relative didn't work for me).
 
 
