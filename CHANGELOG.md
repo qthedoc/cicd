@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/qthedoc/cicd/compare/v1.4.2...v1.4.3) (2025-04-23)
+
+
+### Bug Fixes
+
+* updated docs ([e4b3c15](https://github.com/qthedoc/cicd/commit/e4b3c15ac920293aacb41311e015aee67fa93d0e))
+
 ## [1.4.2](https://github.com/qthedoc/cicd/compare/v1.4.1...v1.4.2) (2025-04-22)
 
 
